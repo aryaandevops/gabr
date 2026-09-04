@@ -15,7 +15,7 @@ on:
       environment:
         description: "Select deployment environment"
         required: true
-        default: "staging"
+        default: "dev"
         type: choice
         options:
           - dev
@@ -32,7 +32,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout
@@ -59,7 +59,7 @@ jobs:
 
   test:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout
@@ -80,7 +80,7 @@ jobs:
 
   security:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Security Check
@@ -102,7 +102,7 @@ jobs:
 
 
   info:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Output of the Job
